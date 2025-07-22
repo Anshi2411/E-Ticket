@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Recharge</title>
+    <link rel="stylesheet" href="{% static 'css/add_recharge.css' %}">
+</head>
+<body>
+    <h1>Recharge Your Balance</h1>
+
+    <!-- {% if messages %}
+        {% for message in messages %}
+            <p style="color:green;">{{ message }}</p>
+        {% endfor %}
+    {% endif %} -->
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Recharge</button>
+    </form>
+
+    <a href="{% url 'homepage' %}">Go to Home</a>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Ticket</title>
+  <link rel="stylesheet" href="{% static 'css/ticket.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="ticket-container">
+    <h2>Your Ticket QR Code</h2>
+    <div class="station-info" id="stationInfo">
+      <p><strong>From:</strong> {{ from_station }}</p>
+      <p><strong>To:</strong> {{ to_station }}</p>
+      <p><strong>Date:</strong> {{ date|default:today_date }}</p>
+    </div>
+    <div id="qrcode"></div>
+    <a href="{% url 'guide' %}" class="back-button">Show the roadmap</a>
+    <br>
+    <br>
+    <a href="{% url 'homepage' %}" class="back-button">Back to Homepage</a>
+
+  </div>
+
+  <script>
+    const from = "{{ from_station }}";
+    const to = "{{ to_station }}";
+    const date = "{{ date|default:'' }}";
+
+    const qrText = `From: ${from}\nTo: ${to}\nDate: ${date}`;
+    new QRCode(document.getElementById("qrcode"), {
+      text: qrText,
+      width: 200,
+      height: 200,
+      colorDark : "#000000",
+      colorLight : "#ffffff",
+      correctLevel : QRCode.CorrectLevel.H
+    });
+  </script>
+</body>
+</html>

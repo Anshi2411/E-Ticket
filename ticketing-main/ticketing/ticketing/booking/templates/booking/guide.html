@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guide Map</title>
+  <link rel="stylesheet" href="{% static 'css/guide.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>GUIDE MAP</h1>
+
+    <div class="map-card">
+      <div class="balance">Current balance - ₹{{ balance }}</div>
+      <div class="map-info">
+        <p><strong>From:</strong> {{ from_station|default:"-" }}</p>
+        <p><strong>To:</strong> {{ to_station|default:"-" }}</p>
+        <p><strong>Estimated Time:</strong> ~20-25 mins</p>
+        <p><strong>Distance:</strong> ~7-10 km (approximate)</p>
+      </div>
+
+      <div class="map-image">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d14751.639290832534!2d72.52311420000001!3d23.0378658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x395e84a38f5dbdc3%3A0x5df66ab2cb8775b5!2sSarthi%20Bungalows%2C%20Science%20City%2C%20Ahmedabad%2C%20Gujarat!3m2!1d23.0688703!2d72.5185108!4m5!1s0x395c2b6507c77677%3A0xa67c5bfc4e85a9cf!2sLD%20College%20of%20Engineering%2C%20Navrangpura%2C%20Ahmedabad%2C%20Gujarat!3m2!1d23.0337073!2d72.5469758!5e0!3m2!1sen!2sin!4v1715321419845!5m2!1sen!2sin" 
+          width="300" 
+          height="200" 
+          style="border:0;" 
+          allowfullscreen 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

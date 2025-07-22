@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  
+  .map-card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    width: 320px;
+    margin: 0 auto;
+  }
+  
+  .balance {
+    background: #2c2c2c;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .map-info {
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .map-image img {
+    width: 100%;
+    border-radius: 8px;
+  }

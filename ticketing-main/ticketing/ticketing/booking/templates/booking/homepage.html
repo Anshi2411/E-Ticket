@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BRTS E-Ticket</title>
+  <link rel="stylesheet" href="{% static 'css/homepage.css' %}" />
+</head>
+<body>
+
+  <div class="sidebar" id="sidebar">
+    <h2>E-Ticket</h2>
+    <ul>
+      <li>Home</li>
+      <li><a href="{% url 'purchase_ticket' %}">Generate Tickets</a></li>
+<!--      <li>History</li>-->
+      <li><a href="{% url 'add_recharge' %}">Payments</a></li>
+     <!-- if you define guide page -->
+<li><a href="{% url 'profile' %}">My Profile</a></li>
+      <li>Settings</li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <header>
+      <button onclick="toggleSidebar()">☰</button>
+      <h2> Current balance - ₹<span id="balance-amount">{{ balance }}</span> </h2>
+      <img src="https://via.placeholder.com/30" class="avatar" />
+    </header>
+
+    <section class="ticket-section">
+    <h3>Currently activated ticket</h3>
+{% if recent_tickets %}
+  {% with ticket=recent_tickets.0 %}
+    <p><strong>From:</strong> {{ ticket.from_station }}</p>
+    <p><strong>To:</strong> {{ ticket.to_station }}</p>
+    <p><strong>Fare:</strong> ₹{{ ticket.fare }}</p>
+    <p><strong>Time:</strong> {{ ticket.timestamp|date:"H:i:s A" }}</p>
+    <p><strong>Date:</strong> {{ ticket.timestamp|date:"d-m-Y" }}</p>
+  {% endwith %}
+{% else %}
+  <p>No current active ticket</p>
+{% endif %}
+
+<div class="button-group">
+  <a href="{% url 'purchase_ticket' %}">
+    <button class="recharge">GENERATE TICKET</button>
+  </a>
+  <a href="{% url 'add_recharge' %}">
+    <button class="buy">ADD RECHARGE</button>
+  </a>
+</div>
+
+
+
+<!-- <h4>Recent Tickets</h4>
+<div id="recent-ticket">
+  {% if recent_tickets|length > 1 %}
+    {% with ticket=recent_tickets.1 %}
+      <div class="ticket">
+        <p><strong>From:</strong> {{ ticket.from_station }}</p>
+        <p><strong>To:</strong> {{ ticket.to_station }}</p>
+        <p><strong>Fare:</strong> ₹{{ ticket.fare }}</p>
+        <p><strong>Time:</strong> {{ ticket.timestamp|date:"H:i:s A" }}</p>
+        <p><strong>Date:</strong> {{ ticket.timestamp|date:"d-m-Y" }}</p>
+      </div>
+    {% endwith %}
+  {% else %}
+    <p>No recent tickets</p>
+  {% endif %}
+</div> -->
+
+    </section>
+
+<section class="profile-section">
+  <h3>Profile</h3>
+<p><strong>Name:</strong> {{ user.username }}</p>
+<p><strong>Mobile:</strong> {{ profile.mobile }}</p>
+<p><strong>Gender:</strong> {{ profile.gender }}</p>
+<p><strong>Occupation:</strong> {{ profile.occupation }}</p>
+<form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <button type="submit" class="buy">Logout</button>
+</form>
+</section>
+
+  </div>
+
+  <script src="{% static 'js/homepage.js' %}"></script>
+</body>
+</html>
